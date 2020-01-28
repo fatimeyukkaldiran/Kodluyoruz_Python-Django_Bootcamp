@@ -1,0 +1,51 @@
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark mb-4">
+        <a class="navbar-brand" href="{% url 'home' %}">PY-Blog</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+          <div class="navbar-nav ml-auto">
+                {% url 'home' as home %}
+            <a class="nav-item nav-link {% if home == request.path %}active{% endif %}" href="{{ home }}">Main Page <span class="sr-only">(current)</span></a>
+
+            {% for item in categories %}
+
+            <a 
+            class="
+            nav-item nav-link 
+            {% if item.get_absolute_url == request.path %}active{% endif %}
+            " href="{{ item.get_absolute_url }}"
+            >
+                {{ item.title }}
+            </a>
+
+    {% endfor %}
+
+    {% if request.user.is_authenticated %}
+    <li class="nav-item nav-link">
+        {{ user.username }} 
+    </li>
+        {% if request.session.user_is_admin %}
+            <a class="nav-item nav-link" href="{% url 'panel' %}">
+                Panel
+            </a>
+    
+        {% endif %}
+    
+    <a class="nav-item btn btn-outline-light" href="{% url 'logout' %}">
+            
+        Sign Out
+    </a>
+
+    
+    {% else %}
+        
+    <a class="nav-item btn btn-outline-light" href="{% url 'login' %}">
+        Sign In    </a>
+    {% endif %}
+            
+
+
+    </div>
+</div>
+</nav>

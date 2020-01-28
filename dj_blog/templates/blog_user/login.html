@@ -1,0 +1,13 @@
+{% extends 'base/master.html' %}
+
+{% block content %}
+
+{% include 'base/form.html' with method="POST" submit="Login" %}
+
+<hr>
+
+<a href="{% url 'signup' %}">
+    Sign Up
+</a>
+
+{% endblock %}

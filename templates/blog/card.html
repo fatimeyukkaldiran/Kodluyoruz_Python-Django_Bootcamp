@@ -1,0 +1,35 @@
+{% load static %}
+{% load blog_extra %}
+
+<div class="card shadow mb-5">
+    {% if item.cover_image  %}
+        <img src="{{ item.cover_image.url }}" class="card-img-top" alt="...">
+    {% else %}
+        <img src="{% static 'img/sanliurfa.jpg' %}" class="card-img-top" alt="...">   
+    {% endif %}
+    
+
+    <div class="card-body">
+      <h5 class="card-title">{{ item.title }}</h5>
+      <p class="card-text">
+          {{ item.content|truncatewords_html:10 }}
+      </p>
+      <a href="{{ item.get_absolute_url }}" class="btn btn-primary">
+          Detail
+      </a>
+      {% user_is_loved request=request post_id=item.pk as is_loved %}
+     
+      <span style="cursor: pointer;" class="likeBtn text-danger" data-post-id="{{ item.pk }}">
+          
+            {% if is_loved %}
+            <i class="fas fa-heart"></i>
+            {% else %}
+            <i class="far fa-heart"></i>
+            {% endif %}
+            {{ item.get_love_count }}
+            
+        </span>
+      
+      
+    </div>
+  </div>
