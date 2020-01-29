@@ -1,4 +1,4 @@
-# Kodluyoruz - Django Egitimi
+# Kodluyoruz - Django Bootcamp
 ## Urfa Py_Blog
 
 - Models
@@ -9,5 +9,3 @@
 - Sessions
 - Messages
 - Signals
-- AUTH"# deneme" 
-"# Kodluyoruz_django_project" 
